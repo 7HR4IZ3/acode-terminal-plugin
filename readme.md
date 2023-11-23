@@ -9,6 +9,7 @@ inputed, simply pressing enter should fix it.
 > **Server Updates**
 > If you use `Acode Terminal` server, ensure to update server whenever you update the plugin
 
+<img src="https://raw.githubusercontent.com/7HR4IZ3/acode-terminal-plugin/main/img/screenshot.jpg" />
 
 ## Features
 
@@ -31,6 +32,11 @@ from the settings page.
 
 ## Video tutorial
 
+### Setup Server
+<a href="https://youtube.com/shorts/bzxbtBPac6w?si=CoeYKX33m-MRsJO9"></a>
+
+### Usage
+<a href="https://youtu.be/ZzGpksYvWcc?feature=shared"></a>
 
 ## Requirements
 
@@ -60,13 +66,13 @@ pkg install python python-pip -y
 Download server script:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/7HR4IZ3/acode-terminal-plugin/main/termServer.py
+curl -sL https://raw.githubusercontent.com/7HR4IZ3/acode-terminal-plugin/main/termServer.py > termServer.py 
 ```
 
 Install requirements:
 
 ```bash
-pip install starlette uvicorn[standard] websockets
+pip install starlette uvicorn websockets
 ```
 
 or at once
@@ -74,8 +80,8 @@ or at once
 ```bash
 pkg update && pkg upgrade -y
 pkg install python python-pip -y
-curl -sL https://raw.githubusercontent.com/7HR4IZ3/acode-terminal-plugin/main/termServer.py
-pip install starlette uvicorn[standard] websockets
+curl -sL https://raw.githubusercontent.com/7HR4IZ3/acode-terminal-plugin/main/termServer.py > termServer.py
+pip install starlette uvicorn websockets
 ```
 
 > **Note**

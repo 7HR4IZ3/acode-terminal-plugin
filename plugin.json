@@ -2,7 +2,7 @@
   "id": "acode.terminal",
   "name": "Acode Terminal",
   "main": "main.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "readme": "readme.md",
   "icon": "icon.png",
   "files": [
@@ -14,7 +14,8 @@
     "js/xterm-addon-web-links.js",
     "js/xterm-addon-webgl.js",
     
-    "term_icon.png"
+    "term_icon.png",
+    "img"
   ],
   "minVersionCode" : 290,
   "price": 0,
