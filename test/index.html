@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./icons/style.css"></link>
+</head>
+<body>
+    <div id="root">
+        <header class="d-flex" style="justify-content: space-around">
+          <span class="title col-6">Plugin</span>
+          <span class="lead col-2"></span>
+          <span class="tail col-2"></span>
+        </header>
+        <div class="main" style="height: 100%"></div>
+    </div>
+
+    <script>
+        function tag(name, attributes) {
+            attributes = attributes || {};
+          
+            let node = document.createElement(name);
+            for (let attribute in attributes) {
+              let value = attributes[attribute];
+          
+              if (attribute === "children") {
+                node.append(...value);
+              } else if (attribute.startsWith("on")) {
+                node.addEventListener(attribute.slice(2), value);
+              } else {
+                node[attribute] = value;
+              }
+            }
+            return node;
+          }          
+    </script>
+    <script src="../main.js"></script>
+</body>
+</html>
