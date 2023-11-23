@@ -1,0 +1,26 @@
+{
+  "id": "acode.terminal",
+  "name": "Acode Terminal",
+  "main": "main.js",
+  "version": "1.0.1",
+  "readme": "readme.md",
+  "icon": "icon.png",
+  "files": [
+    "css/xterm.css", "css/bterm.css",
+    "js/xterm.js",
+    "js/xterm-addon-serialize.js",
+    "js/xterm-addon-fit.js",
+    "js/xterm-addon-search.js",
+    "js/xterm-addon-web-links.js",
+    "js/xterm-addon-webgl.js",
+    
+    "term_icon.png"
+  ],
+  "minVersionCode" : 290,
+  "price": 0,
+  "author": {
+    "name": "Thraize",
+    "email": "gamerxville@gmail.com",
+    "github": "http://github.com/7HR4IZ3/acode-terminal-plugin"
+  }
+}
