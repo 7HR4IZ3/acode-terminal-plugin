@@ -1,7 +1,7 @@
 (function () {
   let prevCmd = window.acode ? "bash" : "node test.js";
   let plugin = {
-    id: "acode.terminal",
+    id: "acode.terminal"
   };
   let url = window.acode?.require("url");
   let fs = window.acode?.require("fsoperation");
@@ -16,7 +16,7 @@
     underline: 4,
     blink: 5,
     reverse: 7,
-    concealed: 8,
+    concealed: 8
   };
 
   let HIGHLIGHTS = {
@@ -36,7 +36,7 @@
     on_light_blue: 104,
     on_light_magenta: 105,
     on_light_cyan: 106,
-    on_white: 107,
+    on_white: 107
   };
 
   let COLORS = {
@@ -56,7 +56,7 @@
     light_blue: 94,
     light_magenta: 95,
     light_cyan: 96,
-    white: 97,
+    white: 97
   };
 
   let RESET = "\x1B[0m";
@@ -69,7 +69,7 @@
     "block",
     "bar",
     "underline",
-    "none",
+    "none"
   ];
   const FONT_SIZE = 11;
   const FONT_FAMILY = appSettings?.get("editorFont");
@@ -84,7 +84,7 @@
     "600",
     "700",
     "800",
-    "900",
+    "900"
   ];
   const SCROLLBACK = 1000;
   const SCROLL_SENSITIVITY = 200;
@@ -104,7 +104,7 @@
     "sapphire",
     "siduckOneDark",
     "snazzy",
-    "xterm",
+    "xterm"
     // "custom",
   ];
 
@@ -128,7 +128,7 @@
       brightBlue: "#57C7FF",
       brightMagenta: "#FF6AC1",
       brightCyan: "#9AEDFE",
-      brightWhite: "#EFF0EB",
+      brightWhite: "#EFF0EB"
     },
     xterm: {
       foreground: "#F8F8F8",
@@ -149,7 +149,7 @@
       cyan: "#5DA5D5",
       brightCyan: "#72F0FF",
       white: "#F8F8F8",
-      brightWhite: "#FFFFFF",
+      brightWhite: "#FFFFFF"
     },
     sapphire: {
       background: "#1c2431",
@@ -170,7 +170,7 @@
       magenta: "#b168df",
       red: "#da6771",
       white: "#efefef",
-      yellow: "#fff099",
+      yellow: "#fff099"
     },
     light: {
       background: "#ffffff",
@@ -193,7 +193,7 @@
       magenta: "#bc05bc",
       red: "#cd3131",
       white: "#555555",
-      yellow: "#949800",
+      yellow: "#949800"
     },
     custom: {
       background: "#1c2431",
@@ -216,7 +216,7 @@
       magenta: "#b168df",
       red: "#da6771",
       white: "#efefef",
-      yellow: "#fff099",
+      yellow: "#fff099"
     },
     ayuDark: {
       background: "#090D13",
@@ -237,7 +237,7 @@
       brightBlue: "#58C1FE",
       brightMagenta: "#FEED98",
       brightCyan: "#94E5CA",
-      brightWhite: "#FEFEFE",
+      brightWhite: "#FEFEFE"
     },
     catppuccin: {
       background: "#1E1D2F",
@@ -258,7 +258,7 @@
       brightBlue: "#96CDFB",
       brightMagenta: "#F5C2E7",
       brightCyan: "#89DCEB",
-      brightWhite: "#D9E0EE",
+      brightWhite: "#D9E0EE"
     },
     oneDark: {
       background: "#1E2127",
@@ -279,7 +279,7 @@
       brightBlue: "#61AFEF",
       brightMagenta: "#C678DD",
       brightCyan: "#56B6C2",
-      brightWhite: "#FFFEFE",
+      brightWhite: "#FFFEFE"
     },
     material: {
       background: "#1E282C",
@@ -300,7 +300,7 @@
       brightBlue: "#7DC6BF",
       brightMagenta: "#6C71C3",
       brightCyan: "#34434D",
-      brightWhite: "#FFFFFF",
+      brightWhite: "#FFFFFF"
     },
     nekonakoDjancoeg: {
       background: "#2a2c3a",
@@ -321,7 +321,7 @@
       brightBlue: "#67d4f2",
       brightMagenta: "#ff8167",
       brightCyan: "#63e0be",
-      brightWhite: "#eeeeee",
+      brightWhite: "#eeeeee"
     },
     dracula: {
       background: "#282a36",
@@ -342,7 +342,7 @@
       brightBlue: "#8be9fd",
       brightMagenta: "#bd93f9",
       brightCyan: "#ff79c6",
-      brightWhite: "#ffffff",
+      brightWhite: "#ffffff"
     },
     ayuMirage: {
       background: "#1F2430",
@@ -363,7 +363,7 @@
       brightBlue: "#58C1FE",
       brightMagenta: "#FEED98",
       brightCyan: "#94E5CA",
-      brightWhite: "#FEFEFE",
+      brightWhite: "#FEFEFE"
     },
     siduckOneDark: {
       background: "#1e222a",
@@ -384,7 +384,7 @@
       brightBlue: "#61afef",
       brightMagenta: "#c678dd",
       brightCyan: "#56b6c2",
-      brightWhite: "#c8ccd4",
+      brightWhite: "#c8ccd4"
     },
     elementary: {
       background: "#101010",
@@ -405,7 +405,7 @@
       brightBlue: "#0071ff",
       brightMagenta: "#ff1d62",
       brightCyan: "#4bb8fd",
-      brightWhite: "#a020f0",
+      brightWhite: "#a020f0"
     },
     ayuLight: {
       background: "#FEFEFE",
@@ -426,7 +426,7 @@
       brightBlue: "#58C1FE",
       brightMagenta: "#FEED98",
       brightCyan: "#94E5CA",
-      brightWhite: "#dacaca",
+      brightWhite: "#dacaca"
     },
     everblush: {
       name: "Everblush",
@@ -448,8 +448,8 @@
       brightBlue: "#71baf2",
       brightMagenta: "#ce89df",
       brightCyan: "#67cbe7",
-      brightWhite: "#bdc3c2",
-    },
+      brightWhite: "#bdc3c2"
+    }
   };
 
   function formatUrl(path) {
@@ -485,11 +485,11 @@
 
   const { clipboard } = window.cordova?.plugins || {};
 
-  function color(text, color, on_color, attrs) {
+  function color(text, clr, on_color, attrs) {
     let fmt_str = (code, text) => "\x1B" + `[${code}m${text}`;
 
-    if (color) {
-      text = fmt_str(COLORS[color], text);
+    if (clr) {
+      text = fmt_str(COLORS[clr], text);
     }
 
     if (on_color) {
@@ -539,7 +539,7 @@
   }
 
   function awaitSetup(script) {
-    return new Promise((r) => {
+    return new Promise(r => {
       script.onload = () => r(script);
       // setTimeout(script.onload, 3000);
     });
@@ -587,7 +587,7 @@
     getState() {
       return {
         name: this.name,
-        termId: this.termId,
+        termId: this.termId
       };
     }
 
@@ -613,25 +613,20 @@
 
       this.#commands = {
         cd: {
-          handler: async (data) => {
+          handler: async data => {
             let dir = url?.join(this.#currentDirectory, data || "");
 
             if (await fs(dir).exists()) {
               this.#currentDirectory = dir;
             } else {
-              this.term.write(
-                color("\r\n No such directory.", "red")
-              );
+              this.term.write(color("\r\n No such directory.", "red"));
             }
           },
           description: "Change current durectory.",
-          help: [
-            "cd: Go to home directory",
-            "cd <directory>: Go to directory",
-          ],
+          help: ["cd: Go to home directory", "cd <directory>: Go to directory"]
         },
         ls: {
-          handler: async (dir) => {
+          handler: async dir => {
             for (let item of await fs(
               this.#currentDirectory,
               dir || ""
@@ -648,47 +643,37 @@
           description: "List items in directory.",
           help: [
             "ls: List this directory",
-            "ls <directory>: List content of <directory>",
-          ],
+            "ls <directory>: List content of <directory>"
+          ]
         },
         help: {
-          handler: (cmd) => {
+          handler: cmd => {
             if (cmd) {
               this.term.write("\r\n* " + `'${cmd}'`);
               let command = this.#commands[cmd];
               this.term.write(
                 "\r\n" +
-                `* ${color("Description:", "green", null, [
-                  "bold",
-                ])} ` +
-                "\r\n\t" +
-                command.description
+                  `* ${color("Description:", "green", null, ["bold"])} ` +
+                  "\r\n\t" +
+                  command.description
               );
               this.term.write(
                 "\r\n" +
-                `* ${color("Help:", "green", null, [
-                  "bold",
-                ])} ` +
-                "\r\n\t" +
-                command.help.join("\r\n\t")
+                  `* ${color("Help:", "green", null, ["bold"])} ` +
+                  "\r\n\t" +
+                  command.help.join("\r\n\t")
               );
             } else {
               this.term.write("\r\n* Available Commands");
               for (cmd in this.#commands) {
                 let command = this.#commands[cmd];
-                this.term.write(
-                  "\r\n" +
-                  `* '${cmd}': ${command.description}`
-                );
+                this.term.write("\r\n" + `* '${cmd}': ${command.description}`);
               }
             }
           },
           description: "Display help menu.",
-          help: [
-            "help: Show Help",
-            "help <command>: Show help on command.",
-          ],
-        },
+          help: ["help: Show Help", "help <command>: Show help on command."]
+        }
       };
     }
 
@@ -704,7 +689,7 @@
 
       this.commandHandler = this.runCommand.bind(this);
 
-      term.onData(async (e) => {
+      term.onData(async e => {
         switch (e) {
           case "\u0003": // Ctrl+C
             term.write("^C");
@@ -741,15 +726,12 @@
     prompt() {
       this.term.write(
         "\r\n " +
-        color(
-          `${this.#currentDirectory.replace(
-            this.#parentDirectory,
-            "~"
-          )}`,
-          "green",
-          null
-        ) +
-        " $ "
+          color(
+            `${this.#currentDirectory.replace(this.#parentDirectory, "~")}`,
+            "green",
+            null
+          ) +
+          " $ "
       );
     }
 
@@ -766,9 +748,7 @@
         try {
           await cmd.handler(...args.slice(1));
         } catch {
-          this.term.write(
-            color("\r\n Error executing command.", "red")
-          );
+          this.term.write(color("\r\n Error executing command.", "red"));
         }
       } else {
         this.term.write(color("\r\n Invalid command", "red"));
@@ -787,10 +767,7 @@
     terminal;
     #sendQ;
 
-    constructor(
-      { command = null, url = "", onmessage = null } = {},
-      ...args
-    ) {
+    constructor({ command = null, url = "", onmessage = null } = {}, ...args) {
       super({}, ...args);
 
       this.#sendQ = [];
@@ -800,21 +777,17 @@
       url && this.init(url);
     }
 
-    async init(url) {
+    async init(url, onmessage) {
       this.socket = new WebSocket(
         typeof url === "function" ? await url.bind(this)() : url
       );
       this.socket.binaryType = "arraybuffer";
 
-      console.log(this.socket.url)
-      this.socket.onmessage = ({ data }) => {
-        data &&
-          this.onmessage?.bind(this)(
-            typeof data == "string" ? data : new Uint8Array(data)
-          );
+      this.$chunks = "";
+      this.$recvSize = null;
 
-        this.terminal?.saveTerminals();
-      };
+      this.socket.onmessage = onmessage || this.onSocketMessage();
+
       this.socket.onopen = () => {
         // if (this.terminal) {
         //   this.terminal.term.loadAddon(
@@ -827,19 +800,19 @@
         this.onopen?.bind(this)();
       };
 
-      this.socket.onclose = (ev) => {
+      this.socket.onclose = ev => {
         // console.log(ev);
         if (this.terminal) {
           this.terminal.term.write(
             "\r\n" +
-            color(
-              "[Connection to server closed - Press enter to exit]",
-              "white",
-              "on_red"
-            ) +
-            "\r\n"
+              color(
+                "[Connection to server closed - Press enter to exit]",
+                "white",
+                "on_red"
+              ) +
+              "\r\n"
           );
-          this.terminal.term.onData((data) => {
+          this.terminal.term.onData(data => {
             if (this.socket.readyState == 3) {
               if (data === "\r") {
                 this.terminal.destroy();
@@ -848,6 +821,35 @@
           });
         }
         this.close(false);
+      };
+    }
+
+    onSocketMessage() {
+      return ({ data }) => {
+        if (data && typeof data == "string") {
+          this.onmessage?.bind(this)(data);
+          return this.terminal?.saveTerminals();
+
+          //   if (!this.$recvSize) {
+          //     let [size, text] = data.split("\r\n\r\n");
+          //     this.$recvSize = Number(size);
+          //     this.$chunks = this.$chunks + text;
+          //   } else {
+          //     this.$chunks = this.$chunks + data;
+          //   }
+
+          //   console.log(this.$chunks)
+          //   console.log(this.$recvSize, this.$chunks.length)
+
+          //   if (this.$chunks.length >= this.$recvSize) {
+          //     this.onmessage?.bind(this)(this.$chunks);
+          //     this.terminal?.saveTerminals();
+
+          //     this.$recvSize = null;
+          //     this.$chunks = "";
+          //   }
+          // }
+        }
       };
     }
 
@@ -875,12 +877,8 @@
         if (this.socket.readyState == 3) {
           terminal.term.write(
             "\r\n" +
-            color(
-              "[Reconnecting to server...]",
-              "white",
-              "on_green"
-            ) +
-            "\r\n\r\n"
+              color("[Reconnecting to server...]", "white", "on_green") +
+              "\r\n\r\n"
           );
           this.init(this.socket.url);
         }
@@ -894,7 +892,7 @@
         config: {
           command: this.command
         },
-        url: this.socket?.url,
+        url: this.socket?.url
       };
     }
 
@@ -904,7 +902,7 @@
         {
           url: state.url,
           restored: true,
-          ...state.config,
+          ...state.config
         },
         state.termId
       );
@@ -936,7 +934,7 @@
         host = host + "/";
       }
 
-      let cmd = plugin?.settings.command || config.command;
+      let cmd = config.command || plugin?.settings.command;
 
       super(
         {
@@ -949,7 +947,7 @@
               (cmd ? "?cmd=" + cmd : "")
             );
           },
-          ...config,
+          ...config
         },
         ...args
       );
@@ -960,13 +958,13 @@
         await fetch(this.host + "resize/" + this.termId, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
             rows,
-            cols,
+            cols
           }),
-          mode: "no-cors",
+          mode: "no-cors"
         });
       } catch {
         // console.log(e);
@@ -992,18 +990,13 @@
         appSettings.value["bajrangcoder.acodex"]?.port || 8767
       );
 
-      fetch(
-        "http://localhost:" + this.port + "/terminals?cols=80&rows=24",
-        {
-          method: "POST",
-        }
-      )
-        .then((resp) => resp.text())
-        .then((pid) => {
+      fetch("http://localhost:" + this.port + "/terminals?cols=80&rows=24", {
+        method: "POST"
+      })
+        .then(resp => resp.text())
+        .then(pid => {
           this.termId = pid;
-          this.init(
-            "ws://localhost:" + this.port + "/terminals/" + pid
-          );
+          this.init("ws://localhost:" + this.port + "/terminals/" + pid);
         });
     }
 
@@ -1011,11 +1004,11 @@
       try {
         await fetch(
           "http://localhost:" +
-          this.port +
-          `/terminals/${this.termId}` +
-          `/size?rows=${rows}&cols=${cols}`,
+            this.port +
+            `/terminals/${this.termId}` +
+            `/size?rows=${rows}&cols=${cols}`,
           {
-            method: "POST",
+            method: "POST"
           }
         );
       } catch {
@@ -1053,21 +1046,23 @@
 
         let cmd =
           config.command ||
-          (prevCmd = await (window.acode
-            ? window.acode
-            : window
-          ).prompt("Enter command", prevCmd));
+          (prevCmd = await (window.acode ? window.acode : window).prompt(
+            "Enter command",
+            prevCmd
+          ));
         this.cmd = cmd;
 
         if (!cmd) return this.close();
 
-        await this.init(
-          host.replace("http", "ws") +
-          "terminal/" +
-          this.termId +
-          "?shell&cmd=" +
-          cmd
-        );
+        let url = true /* config.interactive */
+          ? host.replace("http", "ws") +
+            "terminal/" +
+            this.termId +
+            "?shell&cmd=" +
+            cmd
+          : host.replace("http", "ws") + "execute?cmd=" + cmd;
+
+        await this.init(url);
 
         let start = new Date();
         let origOpen = this.socket.onopen;
@@ -1078,13 +1073,13 @@
 
           this.terminal?.term.write(
             this.terminal.color("[Running]", "blue") +
-            " " +
-            this.terminal.color(`"${this.cmd}"`, "red") +
-            "\r\n\r\n"
+              " " +
+              this.terminal.color(`"${this.cmd}"`, "red") +
+              "\r\n\r\n"
           );
         };
 
-        this.socket.onclose = (ev) => {
+        this.socket.onclose = ev => {
           // console.log(ev.code);
 
           // if (ev.code !== 1000) {
@@ -1095,24 +1090,20 @@
 
           this.terminal?.term.write(
             "\r\n" +
-            this.terminal.color("[Done]", "blue") +
-            " " +
-            this.terminal.color(
-              `exited with code=0 in ${Math.round(
-                (end - start) / 1000
-              )} seconds`,
-              "red"
-            ) +
-            "\r\n\r\n" +
-            this.terminal.color(
-              "[Press enter to exit]",
-              "white",
-              "on_red"
-            ) +
-            "\r\n"
+              this.terminal.color("[Done]", "blue") +
+              " " +
+              this.terminal.color(
+                `exited with code=0 in ${Math.round(
+                  (end - start) / 1000
+                )} seconds`,
+                "red"
+              ) +
+              "\r\n\r\n" +
+              this.terminal.color("[Press enter to exit]", "white", "on_red") +
+              "\r\n"
           );
 
-          this.terminal?.term.onData((data) => {
+          this.terminal?.term.onData(data => {
             if (this.socket.readyState == 3) {
               if (data === "\r") {
                 this.terminal.destroy();
@@ -1121,6 +1112,23 @@
           });
         };
       })();
+    }
+
+    onSocketMessage() {
+      let interval = null,
+        chunks = [];
+
+      let sendChunks = () => {
+        this.onmessage?.bind(this)(chunks.join(""));
+        chunks = [];
+        this.terminal?.saveTerminals();
+      };
+
+      return ({ data }) => {
+        chunks.push(data);
+        if (interval) clearInterval(interval);
+        interval = setInterval(sendChunks, 100);
+      };
     }
 
     setup(terminal) {
@@ -1148,6 +1156,42 @@
     }
   }
 
+  class ProgramExecutor extends WebSocketBackend {
+    name = "program_executor";
+    static alias = "program_executor";
+
+    constructor(config, ...args) {
+      super(config, ...args);
+
+      (async () => {
+        if (config.restored) return this.close();
+
+        let host = config.host || "http://localhost:9001";
+        let plugin = config.plugin;
+        if (plugin) {
+          host = plugin.settings.host;
+        }
+
+        if (!host.endsWith("/")) {
+          host = host + "/";
+        }
+
+        let cmd = (this.cmd = config.command);
+        // console.log(cmd)
+        if (!cmd) return this.close();
+
+        let url = host.replace("http", "ws") + "execute?cmd=" + cmd;
+        // console.log(url)
+        await this.init(url, ({ data }) => {
+          if (!data) return;
+
+          this.onmessage?.bind(this)(JSON.parse(data));
+          this.terminal?.saveTerminals();
+        });
+      })();
+    }
+  }
+
   class SSHBackend extends ExecutorBackend {
     name = "ssh";
 
@@ -1155,7 +1199,7 @@
       super(
         {
           command: "ssh",
-          ...config,
+          ...config
         },
         ...args
       );
@@ -1192,7 +1236,7 @@
       backend = null,
       command = null,
       termData = null,
-      plugin = null,
+      plugin = null
     } = {}) {
       this.#termOptions = [];
       this.#termActions = [];
@@ -1208,7 +1252,7 @@
         allowTransparency: true,
         theme: themes.xterm,
 
-        ...config,
+        ...config
       });
       this.command = command;
       this.termData = termData;
@@ -1218,27 +1262,18 @@
 
       this.#term.loadAddon(
         new WebLinksAddon.WebLinksAddon(async (ev, url) => {
-          if (
-            await acode.confirm(
-              "Go To Link",
-              `Open in browser: '${url}'?`
-            )
-          ) {
+          if (await acode.confirm("Go To Link", `Open in browser: '${url}'?`)) {
             system.openInBrowser(url);
           }
         })
       );
-      this.#term.loadAddon(
-        (this.#search = new SearchAddon.SearchAddon())
-      );
+      this.#term.loadAddon((this.#search = new SearchAddon.SearchAddon()));
       this.#term.loadAddon(
         (this.#serialize = new SerializeAddon.SerializeAddon())
       );
 
       try {
-        this.#term.loadAddon(
-          (this.#webgl = new WebglAddon.WebglAddon())
-        );
+        this.#term.loadAddon((this.#webgl = new WebglAddon.WebglAddon()));
       } catch {
         this.#webgl.dispose();
       }
@@ -1247,8 +1282,8 @@
         this.#term.write(termData + "\r\n");
         this.#term.write(
           "\r\n\r\n" +
-          color("[History Restored]", "black", "on_cyan") +
-          "\r\n\r\n"
+            color("[History Restored]", "black", "on_cyan") +
+            "\r\n\r\n"
         );
       }
 
@@ -1284,11 +1319,11 @@
     }
 
     setCtrl(cb) {
-      this.ctrlPressed = true
+      this.ctrlPressed = true;
       this.onctrlclear = cb;
     }
     clearCtrl() {
-      this.ctrlPressed = false
+      this.ctrlPressed = false;
       this.onctrlclear && this.onctrlclear();
     }
 
@@ -1306,7 +1341,7 @@
       this.#onresize = debounce(this.resize.bind(this), 0);
       window.addEventListener("resize", this.#onresize);
 
-      this.term.onData((data) => {
+      this.term.onData(data => {
         if (this.ctrlPressed && data?.length == 1) {
           this.clearCtrl();
 
@@ -1329,7 +1364,7 @@
           option[0],
           option[0],
           option[1],
-          ...option.slice(1),
+          ...option.slice(1)
         ]);
         this.#termActions[option[0]] = handler;
       } else {
@@ -1351,7 +1386,7 @@
 
       await this.backend.setup(this);
 
-      this.backend.onmessage = (message) => {
+      this.backend.onmessage = message => {
         this.term.write(message);
       };
     }
@@ -1374,7 +1409,7 @@
       if (this.backend?.resize) {
         this.backend.resize({
           cols: this.term.cols + 2,
-          rows: this.term.rows - 4,
+          rows: this.term.rows - 4
         });
       }
     }
@@ -1402,7 +1437,7 @@
       return {
         name: this.name,
         backend: this.backend?.getState.bind(this.backend)(),
-        termData: this.#serialize.serialize(),
+        termData: this.#serialize.serialize()
       };
     }
   }
@@ -1430,7 +1465,8 @@
         AcodeXBackend,
         AcodeBackend,
         // SSHBackend,
-        ExecutorBackend,
+        ExecutorBackend
+        // ProgramExecutor
       ];
     }
 
@@ -1451,27 +1487,37 @@
       this.scripts = await Promise.all([
         addScript({ src: this.baseUrl + "js/xterm.js" }),
         addScript({
-          src: this.baseUrl + "js/xterm-addon-serialize.js",
+          src: this.baseUrl + "js/xterm-addon-serialize.js"
         }),
         addScript({ src: this.baseUrl + "js/xterm-addon-fit.js" }),
         addScript({ src: this.baseUrl + "js/xterm-addon-search.js" }),
         addScript({
-          src: this.baseUrl + "js/xterm-addon-web-links.js",
+          src: this.baseUrl + "js/xterm-addon-web-links.js"
         }),
-        addScript({ src: this.baseUrl + "js/xterm-addon-webgl.js" }),
+        addScript({ src: this.baseUrl + "js/xterm-addon-webgl.js" })
       ]);
 
       this.tags = [
         ...this.scripts,
         addTag("link", {
           rel: "stylesheet",
-          href: this.baseUrl + "css/xterm.css",
+          href: this.baseUrl + "css/xterm.css"
         }),
         addTag("link", {
           rel: "stylesheet",
-          href: this.baseUrl + "css/bterm.css",
-        }),
+          href: this.baseUrl + "css/bterm.css"
+        })
       ];
+
+      if (window.system?.execute) {
+        system
+          .execute("/data/data/com.termux/files/usr/bin/node", {
+            background: true,
+            args: ["./termServer/main.js"]
+          })
+          .then(console.log)
+          .catch(console.error);
+      }
 
       await this.setup();
 
@@ -1483,32 +1529,53 @@
         TermuxBackend,
         ExecutorBackend,
         TerminalBackend,
+        ProgramExecutor,
 
         themes: { ...themes },
 
-        addBackend: (backend) => {
+        addBackend: backend => {
           if (!this.backends.includes(backend)) {
             this.backends.push(backend);
           }
         },
-        removeBackend: (backend) => {
-          this.backends = this.backends.filter((i) => i !== backend);
+        removeBackend: backend => {
+          this.backends = this.backends.filter(i => i !== backend);
         },
 
-        addTerminal: (terminal) => {
+        addTerminal: terminal => {
           if (!this.#terminals.includes(terminal)) {
             this.#terminals.push(terminal);
           }
         },
-        removeTerminal: (terminal) => {
+        removeTerminal: terminal => {
           if (terminal == AcodeTerminal) return;
-          this.#terminals = this.#terminals.filter(
-            (i) => i !== terminal
-          );
+          this.#terminals = this.#terminals.filter(i => i !== terminal);
         },
 
+        execute(command, { signal = null } = {}) {
+          return new Promise((resolve, reject) => {
+            let $backend = new ProgramExecutor({ command });
+            $backend.onmessage = res => resolve(res);
+
+            signal?.addEventListener("abort", () => {
+              $backend.socket?.close();
+              reject("Program aborted.");
+            });
+          });
+        },
+
+        run(command, onmessage) {
+          let $backend = new ExecutorBackend({ command });
+          $backend.onmessage = onmessage;
+          return $backend;
+        },
+
+        show: this.#togglePage.bind(this),
         newTerminal: this.newTerminal.bind(this),
         createTerminal: this.createTerminal.bind(this),
+
+        formatUrl,
+        color
       };
       window.acode?.define("acode.terminal", this.exports);
     }
@@ -1524,16 +1591,16 @@
           icon: "settings",
           onclick: this.#togglePage.bind(this),
           backgroundColor: "#656c76fd",
-          textColor: "white",
+          textColor: "white"
         });
         this.sBtn.show();
       } else {
         this.sBtn = tag("span", {
           className: "icon acode_terminal",
           attr: {
-            action: "run",
+            action: "run"
           },
-          onclick: () => this.page.show(),
+          onclick: () => this.page.show()
         });
         let header = window.root?.get("header");
         header?.insertBefore(this.sBtn, header.lastChild);
@@ -1550,9 +1617,9 @@
       {
         backend = null,
         termId = null,
-        terminal = null,
+        terminal = AcodeTerminal,
         termData = null,
-        backendConfig = {},
+        backendConfig = {}
       } = {}
     ) {
       backend = this.#getBackend(
@@ -1560,14 +1627,14 @@
         { ...backendConfig, plugin: this },
         termId
       );
-      if (!backend) throw new Error("No or invalid backend specified.");
+      // if (!backend) throw new Error("No or invalid backend specified.");
 
       terminal = this.#getTerminal(terminal);
       if (!terminal) {
         terminal = AcodeTerminal;
       }
 
-      terminal = new terminal({
+      let instance = new terminal({
         backend,
         termData,
         plugin: this,
@@ -1580,69 +1647,63 @@
           fontSize: this.settings.fontSize,
           // fontFamily: this.settings.fontFamily,
           fontWeight: this.settings.fontWeight,
-          theme: themes[this.settings.theme],
-        },
+          theme: themes[this.settings.theme]
+        }
       });
 
-      container && terminal.setup(container);
+      container && instance.setup(container);
 
-      this.terminals.push(terminal);
+      this.terminals.push(instance);
 
-      terminal.resize();
+      instance.resize();
 
-      return terminal;
+      return instance;
     }
 
     #setupUi() {
       this.#ui.tabContent = tag("div", {
-        className: "col-12 tab-content",
+        className: "col-12 tab-content"
       });
 
       this.#ui.leftBar = tag("div", {
         className: "col-1 tabs-left-bar",
-        children: [],
+        children: []
       });
 
       this.#ui.tabsContainer = tag("div", {
-        className: "row col-10 nav nav-tabs tabs-container",
+        className: "row col-10 nav nav-tabs tabs-container"
       });
 
       this.#ui.rightBar = tag("div", {
         className: "col-12 d-flex flex-row tabs-right-bar",
-        children: this.#createUiRightBar(),
+        children: this.#createUiRightBar()
       });
 
       this.#ui.tabHeader = tag("div", {
         className: "row tab-headers",
         children: [
           // this.#ui.leftBar,
-          this.#ui.tabsContainer,
+          this.#ui.tabsContainer
           // this.#ui.rightBar,
-        ],
+        ]
       });
 
       this.#ui.quicktools = tag("div", {
         id: "quicktools",
         className: "col-12",
-        children: this.#quickTools(),
+        children: this.#quickTools()
       });
 
       this.#ui.tabs = tag("div", {
         className: "tabs",
-        children: [
-          this.#ui.tabHeader,
-          this.#ui.tabContent,
-          this.#ui.quicktools,
-        ],
+        children: [this.#ui.tabHeader, this.#ui.tabContent, this.#ui.quicktools]
       });
 
       this.main.appendChild(this.#ui.tabs);
-      this.page
-        .querySelector("header .tail")
-        .appendChild(this.#ui.rightBar);
+      this.page.querySelector("header .tail").appendChild(this.#ui.rightBar);
     }
 
-    async newTerminal(termConfig = {}, saveTerms = true) {
+    async newTerminal(termConfig = {}, saveTerms = true, changeDir = true) {
       let term;
       let termNum = this.#termCount++;
       let tabId = `tab-${generateRandomId(5)}`;
@@ -1653,16 +1714,16 @@
         children: [
           tag("div", {
             className: "col-9 tab-header",
-            textContent: "Terminal",
+            textContent: "Terminal"
           }),
-          tag("button", {
-            className: "col btn btn-sm btn-danger close-tab",
-            textContent: "x",
-          }),
+          // tag("button", {
+          //   className: "col btn btn-sm btn-danger close-tab",
+          //   textContent: "x",
+          // }),
           tag("span", {
             className: "term-number",
-            textContent: termNum,
-          }),
+            textContent: termNum
+          })
         ],
         onclick: ({ target }) => {
           if (target.classList.contains("close-tab")) {
@@ -1670,30 +1731,27 @@
           } else {
             this.#setActiveTab(tab);
           }
-        },
+        }
       });
 
-      // const menu = contextmenu({
-      //   top: 100,
-      //   left: 100,
-      //   // toggler: true,
-      //   // onshow: () => console.log("Show"),
-      //   // onhide: () => console.log("Hide"),
-      // });
-      // menu.setAttribute("id", "term-context-menu");
-      // menu.appendChild(this.#tabContextMenu());
+      const menu = contextmenu({
+        top: 100,
+        left: 100
+        // toggler: true,
+        // onshow: () => console.log("Show"),
+        // onhide: () => console.log("Hide"),
+      });
+      menu.setAttribute("id", "term-context-menu");
+      menu.appendChild(this.#tabContextMenu());
 
-      // Show the context menu
-      tabBody.oncontextmenu = (ev) => {
-        ev.preventDefault();
-        // menu.show();
-      };
+      // tabBody.onkeyup = (event) =>
+      // console.log(event.key, event.code, event.type);
 
       tab.setAttribute("tab-id", tabId);
       tab.setAttribute("term-num", termNum);
 
       term = await this.createTerminal(tabBody, termConfig);
-      term.term.onTitleChange((title) => {
+      term.term.onTitleChange(title => {
         tab.querySelector(".tab-header").innerText = title;
       });
       term.ondestroy = () => {
@@ -1712,10 +1770,27 @@
         this.terminals = this.terminals.filter(t => t !== term);
         this.saveTerminals();
       };
+
+      if (changeDir) {
+        let activeFile = editorManager.activeFile;
+        if (activeFile?.uri) {
+          let folder = openfolder.find(activeFile.uri);
+          if (folder?.url) {
+            term.execute(`cd "${formatUrl(folder.url)}"`);
+          }
+        }
+      }
+
       term.term.attachCustomKeyEventHandler(
         this.#customKeyEventHandler.bind(this)
       );
-      //   term.menu = menu;
+      term.menu = menu;
+      // Show the context menu
+      tabBody.oncontextmenu = ev => {
+        ev.preventDefault();
+        menu.show();
+        term.term.focus();
+      };
 
       saveTerms && (await this.saveTerminals());
 
@@ -1731,30 +1806,46 @@
 
     #tabContextMenu() {
       return (this.#ui.contextmenu = tag("div", {
-        className: "",
+        className: "col row",
         children: [
           tag("span", {
-            className: "col icon copy"
+            className: "col icon copy",
+            onclick: () => {
+              let { term } = this.#activeTerm;
+              const toCopy = term.getSelection();
+              cordova.plugins.clipboard.copy(toCopy, () => {
+                acode.toast("Text copied.");
+              });
+              term.focus();
+            }
           }),
+          // tag("span", {
+          //   className: "col icon cut",
+          // }),
           tag("span", {
-            className: "col icon cut"
-          }),
-          tag("span", {
-            className: "col icon paste"
-          }),
+            className: "col icon paste",
+            onclick: () => {
+              let { term } = this.#activeTerm;
+              cordova.plugins.clipboard.paste(text => {
+                term.paste(text);
+              });
+            }
+          })
         ]
-      }))
+      }));
     }
 
     #setActiveTab(tab) {
       let tabId = tab.getAttribute("tab-id");
       let tabBody = this.#ui.tabContent.querySelector("#" + tabId);
 
-      Array.from(document.querySelectorAll(".tab.active"))
-        .map(tab => tab.classList.remove("active"));
+      Array.from(document.querySelectorAll(".tab.active")).map(tab =>
+        tab.classList.remove("active")
+      );
 
-      Array.from(document.querySelectorAll(".tab-body.show"))
-        .map(tab => tab.classList.remove("show"));
+      Array.from(document.querySelectorAll(".tab-body.show")).map(tab =>
+        tab.classList.remove("show")
+      );
 
       tab.classList.add("active");
       tabBody.classList.add("show");
@@ -1780,7 +1871,7 @@
     }
 
     async #saveTerminals() {
-      let terms = this.terminals.map((term) => term.getState());
+      let terms = this.terminals.map(term => term.getState());
       if (terms == this.#termState) return;
       this.#termState = terms;
       // console.log(terms);
@@ -1812,7 +1903,7 @@
               terminal,
               backend,
 
-              termData: item.termData,
+              termData: item.termData
             },
             false
           );
@@ -1823,7 +1914,7 @@
     #createUiRightBar() {
       this.#ui.addTabBtn = tag("span", {
         className: "col-5 icon add",
-        onclick: () => this.newTerminal(),
+        onclick: () => this.newTerminal()
       });
       return [
         tag("div", {
@@ -1835,26 +1926,26 @@
               onclick: async () => {
                 let backend = await acode.select(
                   "Select Backend",
-                  this.backends.map((backend) => [
+                  this.backends.map(backend => [
                     backend.alias,
                     backend.alias,
-                    backend.icon,
+                    backend.icon
                   ])
                 );
                 if (backend) {
                   this.defaultBackend = backend;
                   this.newTerminal({ backend });
                 }
-              },
-            }),
-          ],
+              }
+            })
+          ]
         }),
         // this.#ui.profileSelect,
         tag("span", {
           className: "col icon delete",
           onclick: () => {
             this.#activeTerm?.destroy();
-          },
+          }
         }),
         tag("span", {
           className: "col icon more_vert",
@@ -1865,9 +1956,7 @@
               ["new", "Create Terminal", "add"],
               ["clear", "Clear Terminal", "clearclose"],
               ["close", "Close Terminal", "delete"],
-              ...(this.#activeTerm
-                ? this.#activeTerm.termOptions
-                : []),
+              ...(this.#activeTerm ? this.#activeTerm.termOptions : [])
             ]);
             switch (action) {
               case "new":
@@ -1892,8 +1981,8 @@
                   await action();
                 }
             }
-          },
-        }),
+          }
+        })
       ];
     }
 
@@ -1915,14 +2004,14 @@
                 self.#activeTerm.clearCtrl();
                 this.style.color = "unset";
               }
-            },
+            }
           },
           { icon: "keyboard_tab", text: "\t" },
           { text: "/" },
           { text: "home" },
           { icon: "keyboard_arrow_up", text: "\u001b[A" },
           { text: "end" },
-          { text: "pgup" },
+          { text: "pgup" }
         ],
         [
           {
@@ -1933,28 +2022,26 @@
               let cd = url.dirname(uri);
               cd = formatUrl(cd);
               this.#activeTerm.execute(`cd "${cd}"`);
-            },
+            }
           },
           { text: "esc" },
           {
             text: "alt",
             onclick() {
               if (!self.#activeTerm?.altPressed) {
-                self.#activeTerm.setAlt(
-                  () => (this.style.color = "unset")
-                );
+                self.#activeTerm.setAlt(() => (this.style.color = "unset"));
                 this.style.color = "red";
               } else {
                 self.#activeTerm.clearAlt();
                 this.style.color = "unset";
               }
-            },
+            }
           },
           { icon: "keyboard_arrow_left", text: "\u001b[D" },
           { icon: "keyboard_arrow_down", text: "\u001b[B" },
           { icon: "keyboard_arrow_right", text: "\u001b[C" },
-          { text: "pgdn" },
-        ],
+          { text: "pgdn" }
+        ]
       ];
 
       let textToCmd = {
@@ -1962,47 +2049,63 @@
         home: "\x1b[H",
         end: "\x1b[F",
         pgup: "\u001b[1S",
-        pgdb: "\u001b[1T",
+        pgdn: "\u001b[1T"
       };
 
-      let main = (items) =>
+      let main = items =>
         items.map(({ icon, onclick, text, write }) => {
           let extra = {};
           if (text && !icon) {
             icon = "letters";
             extra["attr"] = { "data-letters": text };
           }
+          let i;
+          let held = false;
+
+          let handler = function (focus = true) {
+            if (!self.#activeTerm) return;
+
+            if (onclick) {
+              onclick.bind(this)();
+            } else if (write) {
+              self.#activeTerm.term.write(write);
+            } else if (text) {
+              self.#activeTerm.backend.send(textToCmd[text] || text);
+            }
+
+            focus && self.#activeTerm.term.focus();
+          };
 
           return tag("span", {
             className: "col icon " + icon,
-            onclick() {
-              if (!self.#activeTerm) return;
-
-              if (onclick) {
-                onclick.bind(this)();
-              } else if (write) {
-                self.#activeTerm.term.write(write);
-              } else if (text) {
-                self.#activeTerm.backend.send(
-                  textToCmd[text] || text
-                );
-              }
-
-              self.#activeTerm.term.focus();
+            onclick: handler,
+            ontouchstart(ev) {
+              ev.preventDefault();
+              held = true;
+              handler.bind(this)(true);
+              i = setInterval(() => {
+                if (!held) {
+                  return clearInterval(i);
+                }
+                handler.bind(this)(true);
+              }, 200);
             },
-            ...extra,
+            ontouchend() {
+              held = false;
+            },
+            ...extra
           });
         });
 
       return [
         tag("div", {
           className: "quicktools-div",
-          children: main(tools[0]),
+          children: main(tools[0])
         }),
         tag("div", {
           className: "quicktools-div",
-          children: main(tools[1]),
-        }),
+          children: main(tools[1])
+        })
       ];
     }
 
@@ -2014,7 +2117,7 @@
 
       if (typeof backend == "string") {
         backend = this.backends.find(
-          (i) => i.alias == backend || i.name == backend
+          i => i.alias == backend || i.name == backend
         );
         backend = new backend(...args);
       }
@@ -2024,14 +2127,14 @@
     #getTerminal(terminal) {
       if (typeof terminal == "string") {
         return this.#terminals.find(
-          (i) => i.alias == terminal || i.name == terminal
+          i => i.alias == terminal || i.name == terminal
         );
       }
       return terminal;
     }
 
     #customKeyEventHandler(event) {
-      console.log(event.key, event.code, event.type)
+      // console.log(event.key, event.code, event.type)
       if (event.type !== "keyup") {
         return true;
       }
@@ -2039,14 +2142,14 @@
       const { term } = terminal;
 
       const key = event.key.toLowerCase();
-      const ctrlPressed = (event.ctrlKey || term.ctrlPressed);
+      const ctrlPressed = event.ctrlKey || term.ctrlPressed;
 
       if (event.shiftKey && ctrlPressed) {
         let tab = document.querySelector(".tab.active");
 
         if (key === "v") {
           // ctrl+v: paste whatever is in the clipboard
-          clipboard.paste((text) => {
+          clipboard.paste(text => {
             term.paste(text);
           });
           return false;
@@ -2069,9 +2172,7 @@
           // ctrl+1 to ctrl+9
           // 49 is the keyCode for '1', 50 for '2', and so on
           const num = event.keyCode - 48;
-          const tab = document.querySelector(
-            `.tab[term-num="${num}"]`
-          );
+          const tab = document.querySelector(`.tab[term-num="${num}"]`);
 
           // const tab = document.querySelectorAll(`.tab`)[num - 1];
           if (tab) {
@@ -2090,13 +2191,13 @@
       } else if (ctrlPressed) {
         if (key == "+") {
           let fontSize = term.options.fontSize;
-          term.options["fontSize"] = (fontSize + 1);
+          term.options["fontSize"] = fontSize + 1;
           term.refresh(0, term.rows - 1);
         } else if (key == "-") {
           let fontSize = term.options.fontSize;
-          if ((fontSize - 1) < 1) return;
+          if (fontSize - 1 < 1) return;
 
-          term.options.fontSize = (fontSize - 1);
+          term.options.fontSize = fontSize - 1;
           term.refresh(0, term.rows - 1);
         }
       }
@@ -2105,7 +2206,7 @@
 
     destroy() {
       sideButton ? this.sBtn?.hide() : this.sBtn.remove();
-      this.tags.map((i) => i.remove());
+      this.tags.map(i => i.remove());
     }
 
     get settings() {
@@ -2133,7 +2234,7 @@
         scrollBack: SCROLLBACK,
         scrollSensitivity: SCROLL_SENSITIVITY,
         cursorStyle: CURSOR_STYLE[0],
-        cursorInactiveStyle: CURSOR_INACTIVE_STYLE[0],
+        cursorInactiveStyle: CURSOR_INACTIVE_STYLE[0]
       };
     }
 
@@ -2146,7 +2247,7 @@
             text: "Theme",
             value: this.settings.theme,
             info: "Terminal theme",
-            select: THEME_LIST,
+            select: THEME_LIST
           },
           {
             index: 0,
@@ -2155,7 +2256,7 @@
             value: this.settings.command,
             info: "Shell command for terminal",
             prompt: "Enter Command",
-            promptType: "text",
+            promptType: "text"
           },
           {
             index: 0,
@@ -2163,7 +2264,7 @@
             text: "Backend",
             value: this.settings.backend,
             info: "Default Terminal backend",
-            select: this.backends.map((i) => i.alias || i.name),
+            select: this.backends.map(i => i.alias || i.name)
           },
           {
             index: 0,
@@ -2172,14 +2273,14 @@
             value: this.settings.host,
             info: "Address for the server.",
             prompt: "Enter address",
-            promptType: "url",
+            promptType: "url"
           },
           {
             index: 1,
             key: "cursorBlink",
             text: "Cursor Blink",
             info: "Whether the cursor blinks.",
-            checkbox: !!this.settings.cursorBlink,
+            checkbox: !!this.settings.cursorBlink
           },
           {
             index: 2,
@@ -2187,11 +2288,7 @@
             text: "Cursor Style",
             value: this.settings.cursorStyle,
             info: "The style of the cursor.",
-            select: [
-              CURSOR_STYLE[0],
-              CURSOR_STYLE[1],
-              CURSOR_STYLE[2],
-            ],
+            select: [CURSOR_STYLE[0], CURSOR_STYLE[1], CURSOR_STYLE[2]]
           },
           {
             index: 3,
@@ -2199,7 +2296,7 @@
             text: "Inactive Cursor Style",
             value: this.settings.cursorInactiveStyle,
             info: "The cursor style of the terminal when not focused.",
-            select: CURSOR_INACTIVE_STYLE,
+            select: CURSOR_INACTIVE_STYLE
           },
           {
             index: 4,
@@ -2212,9 +2309,9 @@
             promptOption: [
               {
                 match: /^[0-9]+$/,
-                required: true,
-              },
-            ],
+                required: true
+              }
+            ]
           },
           // {
           //   index: 5,
@@ -2235,9 +2332,9 @@
             promptOption: [
               {
                 match: /^[0-9]+$/,
-                required: true,
-              },
-            ],
+                required: true
+              }
+            ]
           },
           {
             index: 7,
@@ -2250,26 +2347,24 @@
             promptOption: [
               {
                 match: /^[0-9]+$/,
-                required: true,
-              },
-            ],
-          },
+                required: true
+              }
+            ]
+          }
         ],
         cb: (key, value) => {
           if (key === "command" || key === "backend") {
           } else if (key === "host") {
             value = value.replace("8080", "9001");
           } else {
-            this.terminals.map(
-              (i) => {
-                i.term.options[key] = (key == "theme") ? themes[value] : value
-              }
-            );
+            this.terminals.map(i => {
+              i.term.options[key] = key == "theme" ? themes[value] : value;
+            });
           }
 
           this.settings[key] = value;
           appSettings.update();
-        },
+        }
       };
     }
   }
@@ -2285,6 +2380,14 @@
         }
         termPlugin.baseUrl = baseUrl;
         await termPlugin.init($page, cacheFile, cacheFileUrl);
+        window.dispatchEvent(
+          new CustomEvent("plugin.install", {
+            detail: {
+              name: "acode.terminal",
+              plugin: termPlugin.exports
+            }
+          })
+        );
       },
       termPlugin.settingsObj
     );

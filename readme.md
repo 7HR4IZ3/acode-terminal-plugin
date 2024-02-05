@@ -11,32 +11,53 @@ inputed, simply pressing enter should fix it.
 
 <img src="https://raw.githubusercontent.com/7HR4IZ3/acode-terminal-plugin/main/img/screenshot.jpg" />
 
-## Features
+---------
+Whats new
+---------
+<details>
+  <summary><em>v 1.0.304</em></summary>
+  <ul>
+    <li>You can now hold the arrow buttons down.</li>
+  </ul>
+</details>
+
+
+---------
+
+Features 🔥
+----------
 
 - Create and manage multiple terminals using tabs.
-- State management: terminals are recreated if you close acode while the
+- `State management`: terminals are recreated if you close acode while the
 terminal is still open (if the server is still active when you reopen acode, you
 can continue exactly where you stopped)
-- Terminal Actions: These are actions provided by backends or developers and are
+- `Terminal Actions`: These are actions provided by backends or developers and are
 available throught the right options button on the plugin page header.
 Default actions are ("Go to directory", "Create terminal", "close terminal", "clear
-terminal"), "reconnect to server" is added by `WebsocketBackend` (and it's
+terminal"), `reconnect to server` is added by `WebsocketBackend` (and it's
 inheriting backends), "kill program" is added by `ExecutorBackend`.
 - Customizable: You can change the terminal theme, fontsize, cursor style etc
 from the settings page.
 - Works out-the-box with `AcodeX Server`
 - Use backends standalone (see examples below)
-- Use `ctrl++` to increase font size
-- Use `ctrl+-` to decrease font size
 
+**Keyboard Bindings**
 
-## Video tutorial
+- Use `ctrl++` to increase font size.
+- Use `ctrl+-` to decrease font size.
+- Use `ctrl+shift+q` to close the active terminal.
+- Use `ctrl+shift+n` to create new terminal.
+- Use `ctrl+shift+v` to paste copied text.
+- Use `ctrl+shift+left` to go to the previous terminal
+- Use `ctrl+shift+right` to go to the next terminal
 
-### Setup Server
-<a href="https://youtube.com/shorts/bzxbtBPac6w?si=CoeYKX33m-MRsJO9"></a>
+---------
+Video tutorial
+---------
 
-### Usage
-<a href="https://youtu.be/ZzGpksYvWcc?feature=shared"></a>
+<a href="https://youtube.com/shorts/bzxbtBPac6w?si=CoeYKX33m-MRsJO9">Server Setup</a>
+
+<a href="https://youtu.be/ZzGpksYvWcc?feature=shared">Usage</a>
 
 ## Requirements
 
@@ -49,92 +70,63 @@ You can use the following pty-servers
 - AcodeX Server
 - Acode Terminal Server
 
-## Installation
+---------
+Installation
+---------
+
+> **NOTE**
+> You can skip this if you already have `AcodeX Server` and want to use that instead.
 
 ### Acode Terminal Server
 
 1. Install the plugin on Acode App.
-2. Install the server on Termux using the following command:
+2. Install Python3 and Python3 PIP.
+3. Download the server python script.
+4. Install server requirements.
 
-Install Python3 and Python3 Pip:
+**For termux**:
 
 ```bash
 pkg update && pkg upgrade -y
 pkg install python python-pip -y
 ```
 
-Download server script:
+**For other linux distro (like ubuntu)**
+
+```bash
+apt update && sudo apt upgrade -y
+sudo apt install python python-pip -y
+```
+
+**Download server script**
 
 ```bash
 curl -sL https://raw.githubusercontent.com/7HR4IZ3/acode-terminal-plugin/main/termServer.py > termServer.py 
 ```
 
-Install requirements:
+**Install requirements**
 
 ```bash
 pip install starlette uvicorn websockets
 ```
 
-or at once
+**Or at once**
 
 ```bash
 pkg update && pkg upgrade -y
 pkg install python python-pip -y
+
 curl -sL https://raw.githubusercontent.com/7HR4IZ3/acode-terminal-plugin/main/termServer.py > termServer.py
 pip install starlette uvicorn websockets
 ```
 
-> **Note**
+> **NOTE**
 > `Acode Terminal` server is a python asgi web application so you
 need a ASGI server like `uvicorn` to run it.
 
-<!-- To install ASGI server check below.-->
-
-<!--### ASGI Server-->
-
-<!--#### Aiohttp (default)-->
-
-<!--##### Installation-->
-
-<!--```bash-->
-<!--pip install aiohttp aiohttp_asgi-->
-<!--```-->
-
-<!--##### Usage-->
-
-<!--```bash-->
-<!--uvicorn <server_file>.py-->
-<!--```-->
-
-<!--#### Uvicorn-->
-
-<!--##### Installation-->
-
-<!--```bash-->
-<!--pip install uvicorn[standard]-->
-<!--```-->
-
-<!--##### Usage-->
-
-<!--```bash-->
-<!--uvicorn <server_file>:app-->
-<!--```-->
-
-<!--#### Daphne-->
-
-<!--##### Installation-->
-
-<!--```bash-->
-<!--pip install daphne-->
-<!--```-->
-
-<!--##### Usage-->
-
-<!--```bash-->
-<!--daphne <server_file>:app-->
-<!--```-->
-
-## How To Use
+---------
+How To Use
+---------
 
 <details>
   <summary>
@@ -145,8 +137,7 @@ need a ASGI server like `uvicorn` to run it.
     <li>
       Navigate to where you downloaded the server python script.
     </li>
-    <!--<li>If you have a asgi server installed run `<asgi_server> <server_file>.py`</li>-->
-    <li>Run `python <server_file>.py`</li>
+    <li>Run `python &lt;server_file&gt;.py`</li>
   </ul>
 </details>
 
@@ -160,7 +151,7 @@ need a ASGI server like `uvicorn` to run it.
   </ul>
 </details>
 
-#### Acode Terminal
+**Acode Terminal**
 
 - Start the server in Termux.
 - Acode Terminal adds a sidebutton (if your acode version supports it) else it adds a terminal button to the top header.
@@ -180,20 +171,20 @@ need a ASGI server like `uvicorn` to run it.
 
 - The `✗` button is for closing the terminal.
 
-** Coming Soon **
+**Coming Soon**
 
-- Quicktools Bottom Bar
 - Support Split Terminals (Two or more terminals in the same tab).
 
-### API Docs
+---------
+API
+---------
 
 ```javascript
 const terminal = acode.require("acode.terminal");
 ```
 
-#### API
 
-The following attributes are exported:
+**The following attributes are exported**
 
 - `.addBackend(backend)`: Add backend to the plugin (Also adds a backend
 option in the terminal ui)
@@ -211,6 +202,14 @@ Backends in the plugin backends with the `.name` or `.alias` equaling
 `backend`). Returns a new `Terminal` object.
 - `.newTerminal(terminalConfig)`: Creates a new tab and calls
 `.createTerminal` with the tab container and `terminalConfig`.
+- `async .execute(command, { signal })` Execute `command` and return output
+`signal` (`AbortController.signal`) is optional and can be used to abort
+command. Returns object `{ stdout, stderr }` where `stdout` is the program
+output and `stderr` is any error that occured.
+- `.run(command, onstdout)` Run `command` and call `onstdout` when something is
+logged. Return a `ExecutorBackend` instance so you can send input using the
+`.send` method (check examples)
+- `.show()` Show the terminal is not visible.
 
 ##### Backends
 
@@ -336,11 +335,11 @@ The following `Terminals` are exported:
 
 ### Examples
 
-#### Create a terminal
+**Create a terminal**
 ```javascript
 const terminal = acode.require("acode.terminal");
 
-// .createTerminal: creates a background terminal.
+// .createTerminal: creates a background terminal if container is null.
 // .newTerminal: calls createTerminal then adds the terminal to the ui.
 
 // Use default settings
@@ -350,15 +349,18 @@ await terminal.newTerminal();
 await terminal.newTerminal({ backend: "termux", backendConfig: {} });
 
 // Pass backend instance
-let backend = new terminal.TermuxBackend();
+let backend = new terminal.TermuxBackend({ command: "bash" });
 await terminal.newTerminal({ backend });
 
 // Create Terminal and backend seperately
-let backend = new terminal.TermuxBackend();
+let backend = new terminal.TermuxBackend({ command: "zsh" });
 let terminal = await terminal.createTerminal();
+
+// Connect terminal to backend
+await terminal.setBackend(backend);
 ```
 
-#### Execute a termux command
+**Execute a termux command**
 ```javascript
 // Get and alert the current terminal directory
 
@@ -369,9 +371,16 @@ let backend = new terminal.ExecutorBackend({
     acode.alert("Terminal Directory", output);
   }
 });
+
+// Or using a shorthand
+let terminal = acode.require("acode.terminal");
+terminal.execute("pwd").then(({ stdout, stderr }) => {
+    console.log("Current directory is:", stdout);
+});
+
 ```
 
-#### Start and interact with a termux program
+**Start and interact with a termux program**
 ```javascript
 let terminal = acode.require("acode.terminal");
 let backend = new terminal.TermuxBackend({
@@ -397,6 +406,39 @@ let backend = new terminal.TermuxBackend({
   backend.close();
 })().catch(() => backend.close());
 
+// Or if you want to interact with the program
+let conn = terminal.run("node", (stdout) => {
+    console.log("output:", stdout)
+});
+conn.send(`
+fetch('http://example.com')
+    .then(resp => resp.json())
+    .then(resp => console.log(resp))
+`);
+conn.close();
+
 // Optionally connect to a Terminal
-let term = await terminal.newTerminal({ backend });
+let term = await terminal.newTerminal({ backend: backend || conn });
 ```
+
+---------
+Support
+---------
+
+**Drop a 🌟 [here](https://github.com/7HR4IZ3/acode-terminal-plugin)**
+
+
+
+---------
+Changelog
+---------
+
+<details>
+  <summary><em>v 1.0.3</em></summary>
+  <ul>
+    <li>You can now use <em>run</em> and <em>execute</em> functions to run
+    commands.</li>
+    <li>Updated keyboard bindings.</li>
+    <li>Updated server file</li>
+  </ul>
+</details>
